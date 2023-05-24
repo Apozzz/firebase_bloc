@@ -1,4 +1,5 @@
 import 'package:bloc_firebase/src/features/firebase/ui/firebase.dart';
+import 'package:bloc_firebase/src/features/splash_screen/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.teal,
       ),
-      home: const FireBase(),
+      home: const SplashScreen(),
     );
   }
 }
