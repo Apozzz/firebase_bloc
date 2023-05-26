@@ -22,10 +22,16 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
+  void dispose() {
+    splashScreenBloc.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocConsumer(
+    return BlocConsumer<SplashScreenBloc, SplashScreenState>(
       bloc: splashScreenBloc,
-      buildWhen: (previous, current) => current is SplashScreenState,
+      buildWhen: (previous, current) => current is! SplashScreenActionState,
       builder: (context, state) {
         switch (state.runtimeType) {
           case SplashScreenAnimationChangedState:
@@ -40,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             );
           default:
-            return const Text('No Bueno');
+            return Text('lol');
         }
       },
       listenWhen: (previous, current) => current is SplashScreenActionState,
@@ -49,7 +55,8 @@ class _SplashScreenState extends State<SplashScreen> {
           case SplashScreenNavigateToFirebaseActionState:
             Navigator.push(
               context,
-              MaterialPageRoute(builder: ((context) => OnBoardingScreen())),
+              MaterialPageRoute(
+                  builder: ((context) => const OnBoardingScreen())),
             );
         }
       }),

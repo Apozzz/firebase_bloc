@@ -22,6 +22,12 @@ class _HomeState extends State<Home> {
   }
 
   @override
+  void dispose() {
+    homeBloc.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
       bloc: homeBloc,
@@ -51,7 +57,7 @@ class _HomeState extends State<Home> {
 
             break;
           case HomeGameCartAddedState:
-           ScaffoldMessenger.of(context).showSnackBar(
+            ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Game Added To Cart')));
 
             break;
