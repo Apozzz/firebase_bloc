@@ -2,6 +2,17 @@
 
 A new Flutter project.
 
+Still in progress!
+
+## Tasks
+
+ - Master BLoC architecture
+ - Integrate Firebase and save/fetch data from it. Firebase authentication.
+ - Make use of simple API to get additional data
+ - Learn Flutter Mock tests
+ - Host on Google Play
+ - Learn Modern responsive UI design
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

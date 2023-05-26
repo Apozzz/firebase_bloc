@@ -2,9 +2,10 @@ import 'package:bloc_firebase/src/constants/colors.dart';
 import 'package:bloc_firebase/src/constants/image_strings.dart';
 import 'package:bloc_firebase/src/constants/text_strings.dart';
 import 'package:bloc_firebase/src/features/firebase/ui/firebase.dart';
-import 'package:bloc_firebase/src/features/on_boarding_screen/bloc/on_boarding_screen_bloc.dart';
+import 'package:bloc_firebase/src/features/on_boarding/bloc/on_boarding_bloc.dart';
 import 'package:bloc_firebase/src/features/on_boarding_screen/models/on_boarding_model.dart';
 import 'package:bloc_firebase/src/features/on_boarding_screen/screens/on_boarding_page_widget.dart';
+import 'package:bloc_firebase/src/features/welcome/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
@@ -77,7 +78,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           case OnBoardingScreenNavigateToHomePageActionState:
             Navigator.push(
               context,
-              MaterialPageRoute(builder: ((context) => const FireBase())),
+              MaterialPageRoute(builder: ((context) => const WelcomeScreen())),
             );
         }
       }),

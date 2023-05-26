@@ -11,3 +11,7 @@ const String onBoardingImageTwo =
     'assets/images/on_boarding_images/on-boarding-image-2.png';
 const String onBoardingImageThree =
     'assets/images/on_boarding_images/on-boarding-image-3.png';
+
+/// Welcome Screen Images
+const String welcomeScreenImage =
+    'assets/images/welcome_images/welcome-screen-image.png';

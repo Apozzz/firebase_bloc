@@ -1,4 +1,4 @@
-part of 'on_boarding_screen_bloc.dart';
+part of 'on_boarding_bloc.dart';
 
 abstract class OnBoardingScreenEvent extends Equatable {
   const OnBoardingScreenEvent();
