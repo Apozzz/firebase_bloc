@@ -1,6 +1,10 @@
+import 'package:bloc_firebase/src/common_widgets/fade_in_animation/controller/fade_in_animation_controller.dart';
+import 'package:bloc_firebase/src/common_widgets/fade_in_animation/animation_design.dart';
+import 'package:bloc_firebase/src/common_widgets/fade_in_animation/bloc/fade_in_animation_bloc.dart';
+import 'package:bloc_firebase/src/common_widgets/fade_in_animation/models/fade_in_animation_model.dart';
 import 'package:bloc_firebase/src/constants/image_strings.dart';
 import 'package:bloc_firebase/src/features/firebase/ui/firebase.dart';
-import 'package:bloc_firebase/src/features/on_boarding_screen/screens/on_boarding_screen.dart';
+import 'package:bloc_firebase/src/features/on_boarding/screens/on_boarding_screen.dart';
 import 'package:bloc_firebase/src/features/splash_screen/bloc/splash_screen_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,46 +17,31 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final splashScreenBloc = SplashScreenBloc();
-
-  @override
-  void initState() {
-    startAnimation();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    splashScreenBloc.close();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SplashScreenBloc, SplashScreenState>(
-      bloc: splashScreenBloc,
-      buildWhen: (previous, current) => current is! SplashScreenActionState,
-      builder: (context, state) {
+    final fadeInAnimationBloc = BlocProvider.of<FadeInAnimationBloc>(context);
+    FadeInAnimationController(500, 2200, fadeInAnimationBloc)
+        .startSplashAnimation();
+
+    return BlocConsumer<FadeInAnimationBloc, FadeInAnimationState>(
+      bloc: fadeInAnimationBloc,
+      buildWhen: (previous, current) => current is! FadeInAnimationActionState,
+      builder: ((context, state) {
         switch (state.runtimeType) {
-          case SplashScreenAnimationChangedState:
-            return buildSplashScreenAnimationChangedState(
-                state as SplashScreenAnimationChangedState);
-          case SplashScreenLoadingState:
-            return const SafeArea(
-              child: Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-            );
+          case FadeInAnimationOnState:
+            return buildSplashScreenAnimationChangedState(false);
+          case FadeInAnimationOffState:
+            return buildSplashScreenAnimationChangedState(true);
           default:
-            return Text('lol');
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
         }
-      },
-      listenWhen: (previous, current) => current is SplashScreenActionState,
+      }),
+      listenWhen: (previous, current) => current is FadeInAnimationActionState,
       listener: ((context, state) {
         switch (state.runtimeType) {
-          case SplashScreenNavigateToFirebaseActionState:
+          case FadeInAnimationEndActionState:
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -63,17 +52,8 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  Future<void> startAnimation() async {
-    splashScreenBloc.add(SplashScreenAnimationOnEvent());
-    await Future.delayed(const Duration(milliseconds: 500));
-    splashScreenBloc.add(SplashScreenAnimationOffEvent());
-    await Future.delayed(const Duration(milliseconds: 2200));
-    splashScreenBloc.add(SplashScreenNavigateToFirebaseEvent());
-  }
-
-  Widget buildSplashScreenAnimationChangedState(
-      SplashScreenAnimationChangedState state) {
-    bool animate = state.animation;
+  Widget buildSplashScreenAnimationChangedState(bool animation) {
+    var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: SafeArea(
@@ -84,18 +64,19 @@ class _SplashScreenState extends State<SplashScreen> {
               left: 0,
               child: Image(image: AssetImage(splashBackgroundImage)),
             ),
-            AnimatedPositioned(
-              duration: const Duration(milliseconds: 2000),
-              left: MediaQuery.of(context).size.width / 3.5,
-              bottom: animate ? 250 : 0,
-              child: AnimatedOpacity(
-                opacity: animate ? 1 : 0,
-                duration: const Duration(milliseconds: 2000),
-                child: const Image(
-                  height: 200,
-                  width: 200,
-                  image: AssetImage(splashImage),
-                ),
+            FadeInAnimation(
+              animatePosition: AnimatePosition(
+                bottomBefore: 0,
+                bottomAfter: 250,
+                leftBefore: width / 3.5,
+                leftAfter: width / 3.5,
+              ),
+              animation: animation,
+              durationMs: 2000,
+              child: const Image(
+                height: 200,
+                width: 200,
+                image: AssetImage(splashImage),
               ),
             ),
           ],

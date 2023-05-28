@@ -1,5 +1,5 @@
 import 'package:bloc_firebase/src/constants/sizes.dart';
-import 'package:bloc_firebase/src/features/on_boarding_screen/models/on_boarding_model.dart';
+import 'package:bloc_firebase/src/features/on_boarding/models/on_boarding_model.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingPageWidget extends StatelessWidget {

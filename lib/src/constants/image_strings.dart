@@ -15,3 +15,6 @@ const String onBoardingImageThree =
 /// Welcome Screen Images
 const String welcomeScreenImage =
     'assets/images/welcome_images/welcome-screen-image.png';
+
+/// Login Images
+const String googleLogoImage = 'assets/logos/google-logo.png';

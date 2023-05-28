@@ -6,3 +6,7 @@ abstract class WelcomeEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class WelcomeNavigateToLoginEvent extends WelcomeEvent {}
+
+class WelcomeNavigateToSignUpEvent extends WelcomeEvent {}
