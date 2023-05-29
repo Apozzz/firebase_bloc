@@ -18,3 +18,19 @@ const String welcomeScreenImage =
 
 /// Login Images
 const String googleLogoImage = 'assets/logos/google-logo.png';
+
+/// Forget Password Images
+const String forgetPasswordImage =
+    'assets/images/forget_password_images/forget-password-image.png';
+
+/// Dashboard Images
+const String userProfileImage =
+    'assets/images/dashboard/dash-image-1.png';
+const String bannerImageOne =
+    'assets/images/dashboard/dash-image-2.png';
+const String bannerImageTwo =
+    'assets/images/dashboard/dash-image-3.png';
+const String topCourseImageOne =
+    'assets/images/dashboard/dash-image-4.png';
+const String topCourseImageTwo =
+    'assets/images/dashboard/dash-image-5.png';

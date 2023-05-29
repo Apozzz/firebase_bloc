@@ -3,8 +3,8 @@ import 'package:bloc_firebase/src/constants/sizes.dart';
 import 'package:bloc_firebase/src/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 
-class LoginFooterWidget extends StatelessWidget {
-  const LoginFooterWidget({
+class SignUpFooterWidget extends StatelessWidget {
+  const SignUpFooterWidget({
     super.key,
   });
 
@@ -35,11 +35,11 @@ class LoginFooterWidget extends StatelessWidget {
           onPressed: () {},
           child: Text.rich(
             TextSpan(
-              text: dontHaveAnAccount,
+              text: alreadyHaveAnAccount,
               style: Theme.of(context).textTheme.bodyText1,
               children: [
                 TextSpan(
-                  text: signup.toUpperCase(),
+                  text: login.toUpperCase(),
                   style: const TextStyle(color: Colors.blue),
                 ),
               ],

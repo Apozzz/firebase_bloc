@@ -1,4 +1,5 @@
 import 'package:bloc_firebase/src/common_widgets/fade_in_animation/bloc/fade_in_animation_bloc.dart';
+import 'package:bloc_firebase/src/features/dashboard/screens/dashboard_screen.dart';
 import 'package:bloc_firebase/src/features/firebase/ui/firebase.dart';
 import 'package:bloc_firebase/src/features/login/screens/login_screen.dart';
 import 'package:bloc_firebase/src/features/splash_screen/screens/splash_screen.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         theme: TAppTheme.lightTheme,
         darkTheme: TAppTheme.darTheme,
         themeMode: ThemeMode.system,
-        home: const LoginScreen(),
+        home: const DashboardScreen(),
       ),
     );
   }
